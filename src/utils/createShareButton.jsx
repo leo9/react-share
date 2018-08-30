@@ -108,22 +108,21 @@ class ShareButton extends PureComponent {
     const link = this.link();
 
     // const clickHandler = openWindow ? () => this.openWindow(link) : () => onClick(link);
-    
-    var continueShare= function(){
-        var link = this.link();
+
+    const continueShare = function () {
+      const link2 = this.link();
+      this.openWindow(link2);
+    };
+
+    const clickHandler = openWindow ? function () {
+      if (this.props.onClickResolveCallback) {
+        this.props.onClickResolveCallback(continueShare);
+      } else {
         this.openWindow(link);
       }
-
-    var clickHandler = openWindow ? function () {
-        if (this.props.onClickResolveCallback){
-          this.props.onClickResolveCallback(continueShare)
-        }
-        else {
-          return this.openWindow(link);
-        }
-      } : function () {
-        return onClick(link);
-      };
+    } : function () {
+      onClick(link);
+    };
 
     if (beforeOnClick) {
       const returnVal = beforeOnClick();
