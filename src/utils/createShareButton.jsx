@@ -97,6 +97,7 @@ class ShareButton extends PureComponent {
       onClick,
       openWindow,
       beforeOnClick,
+      onClickResolveCallback,
     } = this.props;
 
     if (disabled) {
@@ -115,8 +116,8 @@ class ShareButton extends PureComponent {
     };
 
     const clickHandler = openWindow ? function () {
-      if (this.props.onClickResolveCallback) {
-        this.props.onClickResolveCallback(continueShare);
+      if (onClickResolveCallback) {
+        onClickResolveCallback(continueShare);
       } else {
         this.openWindow(link);
       }
